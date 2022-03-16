@@ -45,8 +45,6 @@ int findMaxRecB(const int t[], int size, int largest) {
         comparisonCounter++;
         return largest > t[size] ? largest: t[size];
     }
-    
-   
 }
 
 int findMaxRecC(const int t[], int first, int length) {

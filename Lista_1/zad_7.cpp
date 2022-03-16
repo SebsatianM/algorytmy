@@ -48,16 +48,24 @@ void insert(lnode* &L, int x){
 
 //Przykład I
 void reverse(lnode* &L){
-    lnode* L_pom = L;
-    lnode* temp1 = NULL;
+     if (L == nullptr || L->next == nullptr)
+        return; // zabezpieczenie przed listą mniejszą niz 2 elementy
 
-    while (L_pom != nullptr)
+    lnode *current = L;
+    lnode *previous = nullptr;
+
+    L = L->next;
+    current->next = previous;
+
+    while (L != nullptr)
     {
-        temp1 = new lnode(L_pom->key,temp1);
-        L_pom = L_pom->next;
+        previous = current;
+        current = L;
+        L = L->next;
+        current->next = previous;
     }
-    
-    L = temp1;
+
+    L = current;
 }
 
 //Przykład E
@@ -100,8 +108,6 @@ void destroy(lnode* &L){
     L = nullptr;
 }
 
-
-
 int main(){
 
     lnode* L=NULL;
@@ -132,7 +138,7 @@ int main(){
     //Przykład F
     remove(L,4);
 
-    std::cout<<"\nf) ";
+    std::cout<<"\nf) usuwanie 4: ";
     wypisz(L);
 
     //Przykład F
